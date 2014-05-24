@@ -3,6 +3,9 @@ $(function() {
 	
 	var socket;
 	var isAccelActive;
+	var isDebouncing = false;
+	var debouncer;
+
 	var x = 0, y = 0, z=0;
 
 	function init() {
@@ -61,8 +64,18 @@ $(function() {
 			setInterval( function() {
 				var absol = Math.sqrt(x*x + y*y + z*z);
 				
-				if (absol > 10) {
-					sendAccel(x,y,z,absol);
+				if (absol > 5) {
+				console.log(absol);
+					$.debounce( 250, true, log_foo )
+					/*if (!isDebouncing) {
+						jam("snare");
+						sendAccel(x,y,z,absol); 
+						isDebouncing = true
+						debouncer = setTimeout(function() {isDebouncing = false}, 1000);
+					}*/
+				} else {
+					//isDebouncing = false;
+					//clearTimeout(debouncer);
 				}
 				
 				
@@ -70,12 +83,14 @@ $(function() {
 		} 
 	}
 
-
+function log_foo() {
+	console.log("foo");
+}
 	function sendAccel(x, y, z, absol) {
 		if (isAccelActive) {
 			//$("#accel").text(absol);
 			var accelObj = { "accel" : { "x":x, "y":y, "z":z , "abs": absol} }
-			socket.emit('audio', accelObj);
+			//socket.emit('audio', accelObj);
 			console.log("sent accel " + accelObj)
 		}
 	}
