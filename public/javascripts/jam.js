@@ -6,9 +6,11 @@ $(function() {
 	var x = 0, y = 0, z=0;
 
 	function init() {
-		$("#drum").on('click', function() { jam("drum") });
-		$("#guit").on('click', function() { jam("guit") });
+		$("#hhat").on('click', function() { jam("hhat") });
+		$("#kick").on('click', function() { jam("kick") });
+		$("#snare").on('click', function() { jam("snare") });
 		$("#loop1").on('click', function() { jam("loop1") });
+		$("#loop2").on('click', function() { jam("loop2") });
 		$("#connect").unbind().on('click', connect);
 
 		initAccel();
