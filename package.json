@@ -9,7 +9,6 @@
     "express": "3.4.0",
     "jade": "*",
     "socket.io": "0.9.17",
-    "node-core-audio": "0.3.9",
     "player": "^0.1.8"
   }
 }
