@@ -23,6 +23,13 @@ var arp = new Player('./instruments/ARP_1SEC.mp3');
 var snare = new Player('./instruments/DRUM_1SEC/snarerim01_1SEC.mp3');
 var loop1 = new Player('./instruments/LOOP_BEAT_1.mp3');
 var loop2 = new Player('./instruments/LOOP_DRUM_BASS_1.mp3');
+var bass1 = new Player('./instruments/BASS_NOTES/BASS_1SEC_NOTE1.mp3');
+var bass2 = new Player('./instruments/BASS_NOTES/BASS_1SEC_NOTE2.mp3');
+var bass3 = new Player('./instruments/BASS_NOTES/BASS_1SEC_NOTE3.mp3');
+var juno_c = new Player('./instruments/ARPS/JUNO_C.mp3');
+var juno_e = new Player('./instruments/ARPS/JUNO_e.mp3');
+var juno_g = new Player('./instruments/ARPS/JUNO_g.mp3');
+var cymbal = new Player('./instruments/CYMBAL.mp3');
 
 var app = express();
 var server = require('http').createServer(app);
@@ -73,29 +80,42 @@ io.sockets.on('connection', function(socket){
       });
     }
     if(data.instrument == 'kick'){
-      console.log('kick!');
-      kick.play(function(err, kick){
-        console.log('kicked');
-      });
+      kick.play();
     }
     if(data.instrument == 'hbase'){
-      console.log('hbase');
-      hbase.play(function(err, hbase){
-        console.log('hbase');
-      });
-      //play('./instruments/WAVS/H_base_05.wav')
+      hbase.play();
     }
     if(data.instrument == 'snare'){
-      console.log('snare!');
-      snare.play(function(err, snare){
-        console.log('snared');
-      });
+      snare.play();
     }
     if(data.instrument == 'hhat'){
-      console.log('hhat!');
-      hhat.play(function(err, hhat){
-        console.log('hhat');
-      });
+      hhat.play();
+    }
+    if(data.instrument == 'bass'){
+      switch(data.note){
+        case 1:
+          bass1.play();
+          break;
+        case 2:
+          bass2.play();
+          break;
+        default:
+          bass3.play();
+          break;
+      }
+    }
+    if(data.instrument == 'juno'){
+      switch(data.note){
+        case 'c':
+          juno_c.play();
+          break;
+        case 'e':
+          juno_e.play();
+          break;
+        default:
+          juno_g.play();
+          break;
+      }
     }
     if(data.instrument == 'loop2'){
       console.log('loop2');
@@ -110,11 +130,15 @@ io.sockets.on('connection', function(socket){
       if(data.command == 'stop'){
         b.stop()
       }
-
     }
     if(data.instrument == 'arp'){
       arp.play(function(err, arp){
         console.log('arp');
+      });
+    }
+    if(data.instrument == 'cymbal'){
+      cymbal.play(function(err, cymbal){
+        console.log('cymbal');
       });
     }
     if(data.instrument == 'duophonic5'){

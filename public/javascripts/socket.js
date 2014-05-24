@@ -25,6 +25,18 @@ hhat = function(){
   socket.emit('audio', { instrument: 'hhat' });
 };
 
+bass = function(n){
+  socket.emit('audio', { instrument: 'bass', note:n });
+};
+
+juno = function(note){
+  socket.emit('audio', { instrument: 'juno', note:note });
+};
+
+cymbal = function(){
+  socket.emit('audio', { instrument: 'cymbal'});
+};
+
 duophonic = function(){
   socket.emit('audio', { instrument: 'duophonic' });
 };
