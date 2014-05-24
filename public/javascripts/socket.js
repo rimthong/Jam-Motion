@@ -10,11 +10,19 @@ snare = function(){
 };
 
 loop1 = function(){
-  socket.emit('audio', { instrument: 'loop1' });
+  socket.emit('audio', { instrument: 'loop1', command: 'start' });
+};
+
+loop1stop = function(){
+  socket.emit('audio', { instrument: 'loop1', command: 'stop' });
 };
 
 loop2 = function(){
-  socket.emit('audio', { instrument: 'loop2' });
+  socket.emit('audio', { instrument: 'loop2', command: 'start' });
+};
+
+loop2stop = function(){
+  socket.emit('audio', { instrument: 'loop2', command: 'stop' });
 };
 
 hbase = function(){

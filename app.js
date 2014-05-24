@@ -39,8 +39,8 @@ var n = 0;
 
 var baseLine = 262
 
-var b = baudio(function (t) {
-    var x = Math.sin(t * baseline + Math.sin(n));
+var sine = baudio(function (t) {
+    var x = Math.sin(t * 262 + Math.sin(n));
     n += Math.sin(t);
     return x;
 });
@@ -74,10 +74,12 @@ io.sockets.on('connection', function(socket){
     //TODO REMOVE THIS DEBUG
     socket.emit('debug', data);
     if(data.instrument == 'loop1'){
-      console.log('starting loop');
-      loop1.play(function(err, loop1){
-        console.log('stop loop');
-      });
+      if(data.command == 'start'){
+        loop1.play();
+      }
+      if(data.command == 'stop'){
+        loop1.stop();
+      }
     }
     if(data.instrument == 'kick'){
       kick.play();
@@ -118,17 +120,19 @@ io.sockets.on('connection', function(socket){
       }
     }
     if(data.instrument == 'loop2'){
-      console.log('loop2');
-      loop2.play(function(err, loop2){
-        console.log('looped2');
-      });
+      if(data.command == 'start'){
+        loop2.play();
+      }
+      if(data.command == 'stop'){
+        loop2.stop();
+      }
     }
     if(data.instrument == 'sine'){
       if(data.command == 'start'){
-        b.play()
+        sine.play()
       }
       if(data.command == 'stop'){
-        b.stop()
+        sine.end()
       }
     }
     if(data.instrument == 'arp'){
@@ -137,9 +141,7 @@ io.sockets.on('connection', function(socket){
       });
     }
     if(data.instrument == 'cymbal'){
-      cymbal.play(function(err, cymbal){
-        console.log('cymbal');
-      });
+      cymbal.play();
     }
     if(data.instrument == 'duophonic5'){
       console.log('duo5');
