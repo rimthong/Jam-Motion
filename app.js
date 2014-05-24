@@ -41,6 +41,8 @@ io.sockets.on('connection', function(socket){
 
   socket.on('audio', function(data){
     console.log('audioData:', data)
+    //TODO REMOVE THIS DEBUG
+    socket.emit('debug', data);
   });
   
 });
