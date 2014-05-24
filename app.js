@@ -16,6 +16,7 @@ var Player = require('player');
 
 //Init our instruments
 var duophonic = new Player('./instruments/synth01_duophonic.mp3');
+var loop1 = new Player('./instruments/LOOP_BEAT_1.mp3');
 
 var app = express();
 var server = require('http').createServer(app);
@@ -48,8 +49,8 @@ io.sockets.on('connection', function(socket){
     console.log('audioData:', data)
     //TODO REMOVE THIS DEBUG
     socket.emit('debug', data);
-    duophonic.play(function(err, duophonic){
-      console.log('sound!');
+    loop1.play(function(err, loop1){
+      console.log('loop');
     });
   });
   
