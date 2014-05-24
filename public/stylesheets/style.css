@@ -14,3 +14,8 @@ a {
 img {
 	width: 100%;
 }
+
+owl-carousel div {
+	min-height: 50%;
+	height: 50%;
+}
