@@ -3,3 +3,13 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+
+    div 
+        label Server
+        input#server(value='http://192.168.0.129')
+    div
+        label Name
+        input#name(value='JamMan')
+    button#connect Connect
+   
+  button#drum.instrument Drum
