@@ -14,7 +14,11 @@ var Player = require('player');
 
 //Init our instruments
 var duophonic = new Player('./instruments/synth01_duophonic.mp3');
+var hbase = new Player('./instruments/H_base_05.mp3');
+var kick = new Player('./instruments/kick_01.mp3');
+var snare = new Player('./instruments/snarerim01.mp3');
 var loop1 = new Player('./instruments/LOOP_BEAT_1.mp3');
+var loop2 = new Player('./instruments/LOOP_DRUM_BASS_1.mp3');
 
 var app = express();
 var server = require('http').createServer(app);
@@ -47,9 +51,30 @@ io.sockets.on('connection', function(socket){
     console.log('audioData:', data)
     //TODO REMOVE THIS DEBUG
     socket.emit('debug', data);
-    loop1.play(function(err, loop1){
-      console.log('loop');
-    });
+    if(data.instrument == 'loop1'){
+      console.log('starting loop');
+      loop1.play(function(err, loop1){
+        console.log('stop loop');
+      });
+    }
+    if(data.instrument == 'kick'){
+      console.log('kick!');
+      kick.play(function(err, kick){
+        console.log('kicked');
+      });
+    }
+    if(data.instrument == 'snare'){
+      console.log('snare!');
+      snare.play(function(err, snare){
+        console.log('snared');
+      });
+    }
+    if(data.instrument == 'loop2'){
+      console.log('snare!');
+      loop2.play(function(err, loop2){
+        console.log('snared');
+      });
+    }
   });
   
 });
