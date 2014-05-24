@@ -9,11 +9,7 @@ $(function() {
 	var x = 0, y = 0, z=0;
 
 	function init() {
-		$("#hhat").on('click', function() { jam("hhat") });
-		$("#kick").on('click', function() { jam("kick") });
-		$("#snare").on('click', function() { jam("snare") });
-		$("#loop1").on('click', function() { jam("loop1") });
-		$("#loop2").on('click', function() { jam("loop2") });
+		$("#instruments img").on('click', function() { jam($(this).attr('id'),$(this).data('note')) });
 		$("#connect").unbind().on('click', connect);
 
 		initAccel();
@@ -95,8 +91,8 @@ function log_foo() {
 		}
 	}
 
-	function jam(msg) {
-		socket.emit('audio', { "instrument": msg });
+	function jam(instr, note) {
+		socket.emit('audio', { "instrument": instr, "note": note });
 		console.log("sent audio " + msg)
 	}
 	
