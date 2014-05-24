@@ -1,9 +1,9 @@
-extends layout
+extends layout  
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1= "Jamation!"
 
+  div#connector
     div 
         label Server
         input#server(value='http://192.168.0.129')
@@ -12,4 +12,20 @@ block content
         input#name(value='JamMan')
     button#connect Connect
    
-  button#drum.instrument Drum
+  //-button#drum.instrument Drum
+  div#instruments
+    div#owl-example.owl-carousel
+      div
+          img#hhat(src="/images/guit.gif")
+      div
+          img#kick(src="/images/drum.jpg")
+      div
+          img#snare(src="/images/drum.jpg")
+      div
+          img#loop1(src="/images/lsd.jpg")       
+      div
+          img#loop2(src="/images/lsd.jpg")
+
+  div#accel
+    
+</div>
