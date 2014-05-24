@@ -8,9 +8,14 @@ var routes = require('./routes');
 var user = require('./routes/user');
 var test = require('./routes/test');
 var coreAudio = require("node-core-audio");
-var engine = coreAudio.createNewAudioEngine();
+//var engine = coreAudio.createNewAudioEngine();
 var http = require('http');
 var path = require('path');
+var Player = require('player');
+
+
+//Init our instruments
+var duophonic = new Player('./instruments/synth01_duophonic.mp3');
 
 var app = express();
 var server = require('http').createServer(app);
@@ -43,6 +48,9 @@ io.sockets.on('connection', function(socket){
     console.log('audioData:', data)
     //TODO REMOVE THIS DEBUG
     socket.emit('debug', data);
+    duophonic.play(function(err, duophonic){
+      console.log('sound!');
+    });
   });
   
 });
