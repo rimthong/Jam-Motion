@@ -10,19 +10,34 @@ var test = require('./routes/test');
 var http = require('http');
 var path = require('path');
 var Player = require('player');
+var baudio = require('baudio');
 
 
 //Init our instruments
 var duophonic = new Player('./instruments/synth01_duophonic.mp3');
+var duophonic5 = new Player('./instruments/synth01_duophonic_X5.mp3');
 var hbase = new Player('./instruments/H_base_05.mp3');
-var kick = new Player('./instruments/kick_01.mp3');
-var snare = new Player('./instruments/snarerim01.mp3');
+var hhat = new Player('./instruments/DRUM_1SEC/H_closedhat_01_1SEC.mp3');
+var kick = new Player('./instruments/DRUM_1SEC/kick_01_1SEC.mp3');
+var arp = new Player('./instruments/ARP_1SEC.mp3');
+var snare = new Player('./instruments/DRUM_1SEC/snarerim01_1SEC.mp3');
 var loop1 = new Player('./instruments/LOOP_BEAT_1.mp3');
 var loop2 = new Player('./instruments/LOOP_DRUM_BASS_1.mp3');
 
 var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server, {log:false});
+
+var n = 0;
+
+var baseLine = 262
+
+var b = baudio(function (t) {
+    var x = Math.sin(t * baseline + Math.sin(n));
+    n += Math.sin(t);
+    return x;
+});
+
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -63,16 +78,49 @@ io.sockets.on('connection', function(socket){
         console.log('kicked');
       });
     }
+    if(data.instrument == 'hbase'){
+      console.log('hbase');
+      hbase.play(function(err, hbase){
+        console.log('hbase');
+      });
+      //play('./instruments/WAVS/H_base_05.wav')
+    }
     if(data.instrument == 'snare'){
       console.log('snare!');
       snare.play(function(err, snare){
         console.log('snared');
       });
     }
+    if(data.instrument == 'hhat'){
+      console.log('hhat!');
+      hhat.play(function(err, hhat){
+        console.log('hhat');
+      });
+    }
     if(data.instrument == 'loop2'){
-      console.log('snare!');
+      console.log('loop2');
       loop2.play(function(err, loop2){
-        console.log('snared');
+        console.log('looped2');
+      });
+    }
+    if(data.instrument == 'sine'){
+      if(data.command == 'start'){
+        b.play()
+      }
+      if(data.command == 'stop'){
+        b.stop()
+      }
+
+    }
+    if(data.instrument == 'arp'){
+      arp.play(function(err, arp){
+        console.log('arp');
+      });
+    }
+    if(data.instrument == 'duophonic5'){
+      console.log('duo5');
+      duophonic5.play(function(err, duophonic5){
+        console.log('duo5');
       });
     }
   });

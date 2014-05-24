@@ -9,6 +9,8 @@
     "express": "3.4.0",
     "jade": "*",
     "socket.io": "0.9.17",
-    "player": "0.1.8"
+    "player": "0.1.8",
+    "macaudio": "0.0.2",
+    "baudio": "^2.1.0"
   }
 }

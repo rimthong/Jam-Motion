@@ -17,6 +17,30 @@ loop2 = function(){
   socket.emit('audio', { instrument: 'loop2' });
 };
 
+hbase = function(){
+  socket.emit('audio', { instrument: 'hbase' });
+};
+
+hhat = function(){
+  socket.emit('audio', { instrument: 'hhat' });
+};
+
+duophonic = function(){
+  socket.emit('audio', { instrument: 'duophonic' });
+};
+
+duophonic5 = function(){
+  socket.emit('audio', { instrument: 'duophonic5' });
+};
+
+sineStart = function(){
+  socket.emit('audio', { instrument: 'sine', command: 'start' });
+};
+
+sineStop = function(){
+  socket.emit('audio', { instrument: 'sine', command: 'stop' });
+};
+
 socket.on('debug', function(data){
     console.log("Received:", data);
 }) 
