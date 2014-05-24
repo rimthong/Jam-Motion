@@ -37,6 +37,10 @@ bass = function(n){
   socket.emit('audio', { instrument: 'bass', note:n });
 };
 
+fx = function(n){
+  socket.emit('audio', { instrument: 'fx', note:n });
+};
+
 juno = function(note){
   socket.emit('audio', { instrument: 'juno', note:note });
 };

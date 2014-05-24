@@ -23,12 +23,15 @@ var arp = new Player('./instruments/ARP_1SEC.mp3');
 var snare = new Player('./instruments/DRUM_1SEC/snarerim01_1SEC.mp3');
 var loop1 = new Player('./instruments/LOOP_BEAT_1.mp3');
 var loop2 = new Player('./instruments/LOOP_DRUM_BASS_1.mp3');
-var bass1 = new Player('./instruments/BASS_NOTES/BASS_1SEC_NOTE1.mp3');
-var bass2 = new Player('./instruments/BASS_NOTES/BASS_1SEC_NOTE2.mp3');
-var bass3 = new Player('./instruments/BASS_NOTES/BASS_1SEC_NOTE3.mp3');
+var bass1 = new Player('./instruments/BASS_RIFFS/BASS_RIFF_1.mp3');
+var bass2 = new Player('./instruments/BASS_RIFFS/BASS_RIFF_2.mp3');
+var bass3 = new Player('./instruments/BASS_RIFFS/BASS_RIFF_3.mp3');
 var juno_c = new Player('./instruments/ARPS/JUNO_C.mp3');
 var juno_e = new Player('./instruments/ARPS/JUNO_e.mp3');
 var juno_g = new Player('./instruments/ARPS/JUNO_g.mp3');
+var fx1 = new Player('./instruments/FX/FX_1.mp3');
+var fx2 = new Player('./instruments/FX/FX_2.mp3');
+var fx3 = new Player('./instruments/FX/FX_3.mp3');
 var cymbal = new Player('./instruments/CYMBAL.mp3');
 
 var app = express();
@@ -103,6 +106,19 @@ io.sockets.on('connection', function(socket){
           break;
         default:
           bass3.play();
+          break;
+      }
+    }
+    if(data.instrument == 'fx'){
+      switch(data.note){
+        case 1:
+          fx1.play();
+          break;
+        case 2:
+          fx2.play();
+          break;
+        default:
+          fx3.play();
           break;
       }
     }
