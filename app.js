@@ -7,6 +7,8 @@ var express = require('express');
 var routes = require('./routes');
 var user = require('./routes/user');
 var test = require('./routes/test');
+var coreAudio = require("node-core-audio");
+var engine = coreAudio.createNewAudioEngine();
 var http = require('http');
 var path = require('path');
 
