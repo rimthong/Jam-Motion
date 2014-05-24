@@ -19,3 +19,13 @@ owl-carousel div {
 	min-height: 50%;
 	height: 50%;
 }
+
+.note1 {
+-webkit-filter: sepia(90%) hue-rotate(90deg);
+}
+.note2 {
+-webkit-filter: sepia(90%) hue-rotate(0deg);
+}
+.note3 {
+-webkit-filter: sepia(90%) hue-rotate(270deg);
+}
