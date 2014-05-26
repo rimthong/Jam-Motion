@@ -20,6 +20,12 @@ owl-carousel div {
 	height: 50%;
 }
 
+#msg {
+	min-height: 100%;
+	min-width: 100%;
+	background-color:black;
+}
+
 .note1 {
 -webkit-filter: sepia(90%) hue-rotate(90deg);
 }

@@ -68,29 +68,27 @@ $(function() {
       var absol = Math.sqrt(x*x + y*y + z*z);
       
       if (absol > 5) {
-        console.log(absol);
+        moveThrottled();
       }
     }
 
-	debouncedMessage = $.debounce( 250, accelCalculation)
+	moveThrottled = _.throttle( alert, 250, { trailing: false })
 
 	function initAccel() {		
 		if (window.DeviceMotionEvent != undefined) {
-			window.ondevicemotion = debouncedMessage
+			window.ondevicemotion = accelCalculation;
 		} 
 	}
 
-function log_foo() {
+function alert() {
 	console.log("foo");
-}
+$("#msg").fadeIn(100).fadeOut(200);
+//function sendAccel(x, y, z, absol) {
 
-function sendAccel(x, y, z, absol) {
-  if (isAccelActive) {
     //$("#accel").text(absol);
-    var accelObj = { "accel" : { "x":x, "y":y, "z":z , "abs": absol} }
-    //socket.emit('audio', accelObj);
+    var accelObj = { "accel" : { "x":x, "y":y, "z":z , "abs": 1} }
+    socket.emit('audio', accelObj);
     console.log("sent accel " + accelObj)
-  }
 }
 
 function jam() {

@@ -1,21 +1,23 @@
 extends layout  
 
 block content
-  h1= "Jamation!"
-
-  div#connector
-    div 
-        label Server
-        input#server(value='http://192.168.0.129')
-    //-div
-        label Name
-        input#name(value='JamMan')
-    button#connect Connect
+  div#msg
+    h1= "Jamation!"
+ 
+  div
+    div#connector
+      div 
+          label Server
+          input#server(value='http://192.168.0.129')
+      //-div
+          label Name
+          input#name(value='JamMan')
+      button#connect Connect
    
-  //-button#drum.instrument Drum
-  div#instruments
-    div#owl-example.owl-carousel
-      div
+    //-button#drum.instrument Drum
+    div#instruments
+      div#owl-example.owl-carousel
+        div
           img#bass(src="/images/drum-small.jpg",data-note=1).note1
           img#bass(src="/images/drum-small.jpg",data-note=2).note2
           img#bass(src="/images/drum-small.jpg",data-note=3).note3
@@ -28,6 +30,6 @@ block content
           img#fx(src="/images/synth-small.jpg",data-note=2).note2
           img#fx(src="/images/synth-small.jpg",data-note=3).note3
 
-  div#accel
+    div#accel
     
 </div>
