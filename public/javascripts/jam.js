@@ -86,7 +86,8 @@ $("#msg").fadeIn(100).fadeOut(200);
 //function sendAccel(x, y, z, absol) {
 
     //$("#accel").text(absol);
-    var accelObj = { "accel" : { "x":x, "y":y, "z":z , "abs": 1} }
+    //var accelObj = { "accel" : { "x":x, "y":y, "z":z , "abs": 1} }
+    socket.emit('audio', { "instrument": "kick" })
     socket.emit('audio', accelObj);
     console.log("sent accel " + accelObj)
 }
