@@ -1,7 +1,7 @@
 extends layout  
 
 block content
-  div#msg
+  div
     h1= "Jamation!"
  
   div
@@ -17,19 +17,22 @@ block content
     //-button#drum.instrument Drum
     div#instruments
       div#owl-example.owl-carousel
-        div
-          img#bass(src="/images/drum-small.jpg",data-note=1).note1
-          img#bass(src="/images/drum-small.jpg",data-note=2).note2
-          img#bass(src="/images/drum-small.jpg",data-note=3).note3
-      div
-          img#juno(src="/images/guit-small.jpg",data-note="c").note1
-          img#juno(src="/images/guit-small.jpg",data-note="e").note2
-          img#juno(src="/images/guit-small.jpg",data-note="g").note3
-      div
-          img#fx(src="/images/synth-small.jpg",data-note=1).note1
-          img#fx(src="/images/synth-small.jpg",data-note=2).note2
-          img#fx(src="/images/synth-small.jpg",data-note=3).note3
+        div(data-instrument="guit")
+          img(src="/images/guit-small.jpg",data-note=1).note1
+          img(src="/images/guit-small.jpg",data-note=2).note2
+          img(src="/images/guit-small.jpg",data-note=3).note3
+        div(data-instrument="percussion")
+          img(src="/images/synth-small.jpg",data-note=1).note1
+          img(src="/images/synth-small.jpg",data-note=2).note2
+          img(src="/images/synth-small.jpg",data-note=3).note3
+        div(data-instrument="drum-loop")
+          img(src="/images/drum-small.jpg",data-note=1).note1
+          img(src="/images/drum-small.jpg",data-note=2).note2
+          img(src="/images/drum-small.jpg",data-note=-1).note3
+        div(data-instrument="bass-loop")
+          img(src="/images/guit-small.jpg",data-note="c").note1
+          img(src="/images/guit-small.jpg",data-note="e").note2
+          img(src="/images/guit-small.jpg",data-note="g").note3
 
-    div#accel
+  div#msg Beat!
     
-</div>

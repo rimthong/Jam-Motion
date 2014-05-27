@@ -10,6 +10,9 @@ a {
 #instruments {
 	display:none;
 }
+#instruments .active {
+-webkit-filter: invert(1);
+}
 
 img {
 	width: 100%;
@@ -21,9 +24,9 @@ owl-carousel div {
 }
 
 #msg {
-	min-height: 100%;
 	min-width: 100%;
 	background-color:black;
+	display:none;
 }
 
 .note1 {

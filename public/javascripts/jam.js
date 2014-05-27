@@ -8,26 +8,24 @@ $(function() {
 
 	var x = 0, y = 0, z=0;
 
-  var instrument = 'kick'
-  var note = 1
   var command = ''
 
+  // wow: 
+  var myGUID = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+      return v.toString(16);
+  });
 	function init() {
-    /**
-		$("#hhat").on('click', function() { instrument = 'hhat'; jam() });
-		$("#kick").on('click', function() { instrument = 'kick'; jam() });
-		$("#snare").on('click', function() { instrument = 'snare'; jam()});
-		$("#loop1").on('click', function() { instrument = 'loop1'; jam()});
-		$("#loop2").on('click', function() { instrument = 'loop2'; jam()});
-    **/
-		//$("#instruments img").on('click', function() { jam($(this).attr('id'),$(this).data('note')) });
-		$("#instruments img").on('click', function() { instrument = $(this).attr('id'); note = $(this).data('note'); command = $(this).attr('command'); jam(); });
+		$("#instruments img").on('click', function() { instrument = $(this).parent().data('instrument'); note = $(this).data('note'); $("#instruments .active").removeClass("active"); $(this).addClass("active") }); 
 		$("#connect").unbind().on('click', connect);
 
 		initAccel();
+
+		$("#server").val(window.location.hostname);
 	}
 
 	function connect() {
+		// $("#server").blur(); doesn't work
 		var server = $("#server").val();
 		console.log("connecting to " + server)
 		socket = io.connect(server);
@@ -53,8 +51,6 @@ $(function() {
 
 
   accelCalculation = function(e) {
-      e.preventDefault(); //disable shake undo
-
       x = e.acceleration.x;
       y = e.acceleration.y;
       z = e.acceleration.z;
@@ -72,7 +68,7 @@ $(function() {
       }
     }
 
-	moveThrottled = _.throttle( alert, 250, { trailing: false })
+	moveThrottled = _.throttle( jam, 250, { trailing: false })
 
 	function initAccel() {		
 		if (window.DeviceMotionEvent != undefined) {
@@ -80,21 +76,19 @@ $(function() {
 		} 
 	}
 
-function alert() {
-	console.log("foo");
-$("#msg").fadeIn(100).fadeOut(200);
-//function sendAccel(x, y, z, absol) {
-
-    //$("#accel").text(absol);
-    //var accelObj = { "accel" : { "x":x, "y":y, "z":z , "abs": 1} }
-    socket.emit('audio', { "instrument": "kick" })
-    socket.emit('audio', accelObj);
-    console.log("sent accel " + accelObj)
-}
 
 function jam() {
-  socket.emit('audio', { "instrument": instrument, "note": note, "command": command });
-  console.log("sent audio " + instrument)
+    $("#msg").fadeIn(100).fadeOut(200);
+
+    //$("#accel").text(absol);
+    //var accelObj = { "accel" : { "x" : x, "y" : y, "z" : z , "abs" : 1 } }
+    // socket.emit('audio', accelObj);
+    // console.log("sent accel " + accelObj)
+    
+    if (instrument) {
+      socket.emit('audio', { "instrument" : instrument, "note" : note, "id" : myGUID });
+      console.log("sent audio")
+    }
 }
 
 	
