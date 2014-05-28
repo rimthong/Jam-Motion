@@ -1,0 +1,24 @@
+{
+  "name": "jamation",
+  "version": "0.0.0",
+  "homepage": "https://github.com/bushibytes/jamation",
+  "authors": [
+    "Alexandre Rimthong <rimthong@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "underscore": "~1.6.0",
+    "bootstrap": "~3.1.1"
+  },
+  "devDependencies": {
+    "font-awesome": "~4.1.0"
+  }
+}

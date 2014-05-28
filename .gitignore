@@ -1,4 +1,7 @@
 node_modules
+bower_components
+vendor
+server
 *.un~
 *.swp
 *.swo
