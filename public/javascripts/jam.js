@@ -63,7 +63,12 @@ $(function() {
 
       var absol = Math.sqrt(x*x + y*y + z*z);
       
-      if (absol > 5) {
+      if (absol > 10) {
+      	if (x>0) {
+      		subinstrument = "kick";
+      	} else {
+      		subinstrument = "snare";
+      	}
         moveThrottled();
       }
     }
@@ -80,14 +85,17 @@ $(function() {
 function jam() {
     $("#msg").fadeIn(100).fadeOut(200);
 
-    //$("#accel").text(absol);
-    //var accelObj = { "accel" : { "x" : x, "y" : y, "z" : z , "abs" : 1 } }
-    // socket.emit('audio', accelObj);
-    // console.log("sent accel " + accelObj)
+    //var accelObj = { "accel" : { "x" : x, "y" : y, "z" : z , "abs" : Math.sqrt(x*x + y*y + z*z) } }
+    //socket.emit('audio', accelObj);
+    //console.log("sent accel " + accelObj)
     
     if (instrument) {
-      socket.emit('audio', { "instrument" : instrument, "note" : note, "id" : myGUID });
-      console.log("sent audio")
+    	var myinstr = instrument;
+    	if (instrument == "percussion") {
+    		myinstr = subinstrument;
+    	}
+      socket.emit('audio', { "instrument" : myinstr, "note" : note, "id" : myGUID });
+      //console.log("sent audio")
     }
 }
 
