@@ -33,6 +33,21 @@ var fx1 = new Player('./instruments/FX/FX_1.mp3');
 var fx2 = new Player('./instruments/FX/FX_2.mp3');
 var fx3 = new Player('./instruments/FX/FX_3.mp3');
 var cymbal = new Player('./instruments/CYMBAL.mp3');
+var guitar = {};
+guitar["a"] = new Player('./instruments/indie/HIT_GUITAR_1.mp3');
+guitar["b"] = new Player('./instruments/indie/HIT_GUITAR_2.mp3');
+guitar["c"] = new Player('./instruments/indie/HIT_GUITAR_3.mp3');
+var percussion = {};
+percussion['a'] = new Player('./instruments/indie/HIT_PERC_1.mp3');
+percussion['b'] = new Player('./instruments/indie/HIT_PERC_2.mp3');
+percussion['c'] = new Player('./instruments/indie/HIT_PERC_3.mp3');
+var loop_bass = {};
+loop_bass['a'] = new Player('./instruments/indie/LOOP_BASS_1.mp3');
+loop_bass['b'] = new Player('./instruments/indie/LOOP_BASS_2.mp3');
+var loop_drum = {};
+loop_drum['a'] = new Player('./instruments/indie/LOOP_DRUM_1.mp3');
+loop_drum['b'] = new Player('./instruments/indie/LOOP_DRUM_2.mp3');
+
 
 var app = express();
 var server = require('http').createServer(app);
@@ -85,16 +100,30 @@ io.sockets.on('connection', function(socket){
       }
     }
     if(data.instrument == 'kick'){
-      kick.play();
+      //kick.play();
+      percussion["a"].play();
     }
     if(data.instrument == 'hbase'){
       hbase.play();
     }
     if(data.instrument == 'snare'){
-      snare.play();
+      //snare.play();
+      percussion["b"].play();
     }
     if(data.instrument == 'hhat'){
       hhat.play();
+    }
+    if(data.instrument == 'guitar') {
+      guitar[data.note].play();
+    }
+    if (data.instrument == 'percussion') {
+      percussion[data.note].play();
+    }
+    if (data.instrument == 'bass-loop') {
+      loop_bass[data.note].play();
+    }
+    if (data.instrument == 'drum-loop') {
+      loop_drum[data.note].play();
     }
     if(data.instrument == 'bass'){
       switch(data.note){
