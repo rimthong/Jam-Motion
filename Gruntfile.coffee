@@ -2,13 +2,7 @@ module.exports = (grunt) ->
   grunt.initConfig
     pkg: grunt.file.readJSON 'package.json'
 
-    clean: ['bower_components', 'vendor', 'server']
-
-    bower:
-      install:
-        options:
-          targetDir: 'vendor'
-          install: true
+    clean: ['server']
 
     coffee:
       compile:
@@ -16,8 +10,8 @@ module.exports = (grunt) ->
           'server/app.js': 'src/server/app.coffee'
           'server/routes/index.js' : 'src/server/routes/index.coffee'
           'server/routes/test.js' : 'src/server/routes/test.coffee'
-          'server/public/javascripts/jam.js': [
-            'src/front/js/jam.coffee'
+          'server/public/javascripts/socket.js': [
+            'src/front/js/socket.coffee'
           ]
         options:
           bare: true
@@ -54,15 +48,19 @@ module.exports = (grunt) ->
           level: 'warn'
 
     concat:
+      temp: #XXX Temporary, until we coffescript jam.js
+        src: ['public/javascripts/jam.js']
+        dest: 'server/public/javascripts/jam.js'
       js:
-        src: ['vendor/jquery/jquery.min.js',
-              'vendor/bootstrap/bootstrap.min.js',
-              'vendor/underscore/underscore.min.js'
-            ]
+        src: ['vendor/jquery.js',
+              'vendor/bootstrap.min.js',
+              'vendor/owl.carousel.min.js',
+              'vendor/underscore-min.js']
         dest: 'server/public/javascripts/vendor.js'
       css:
-        src: ['vendor/bootstrap/bootstrap.css',
-              'vendor/font-awesome/css/font-awesome.css']
+        src: ['vendor/bootstrap.min.css'
+              'vendor/owl.carousel.css',
+              'vendor/owl.theme.css.css']
         dest: 'server/public/stylesheets/vendor.css'
 
     stylus:
@@ -71,12 +69,12 @@ module.exports = (grunt) ->
           'server/public/stylesheets/jamation.css': ['src/front/css/jamation.styl']
 
     copy:
-      font:
-        files: [expand: true, flatten: true, src: ['vendor/font-awesome/fonts/*', 'bower_components/bootstrap/dist/fonts/*'], dest: 'server/public/fonts']
-      img:
-        files: [expand: true, flatten: true, src: ['components/bootstrap/img/*.png', 'images/*.png'], dest: 'server/public/img']
       views:
-        files: [ expand:true, flatten: true, filter:'isFile', src: ['src/front/views/**'], dest: 'server/views/']
+        files: [ expand:true, flatten: true, filter:'isFile', src: ['views/**'], dest: 'server/views/']
+      images:
+        files: [ expand:true, flatten: true, filter:'isFile', src: ['public/images/**'], dest: 'server/public/images']
+      owlimages:
+        files: [ expand:true, flatten: true, filter:'isFile', src: ['public/stylesheets/owl-carousel/*.png'], dest: 'server/public/stylesheets/']
 
     watch:
       coffee:
@@ -86,7 +84,6 @@ module.exports = (grunt) ->
         files: 'src/**/*.styl'
         tasks: ['build']
 
-  grunt.loadNpmTasks 'grunt-bower-task'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-stylus'
   grunt.loadNpmTasks 'grunt-contrib-concat'
@@ -98,5 +95,5 @@ module.exports = (grunt) ->
   grunt.registerTask 'build', ['coffee', 'stylus', 'concat', 'copy']
   grunt.registerTask 'lint', ['coffeelint']
 
-  grunt.registerTask 'default', ['clean', 'bower', 'build']
+  grunt.registerTask 'default', ['clean', 'build']
 

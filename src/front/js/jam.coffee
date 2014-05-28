@@ -1,0 +1,2 @@
+$ ->
+  console.log 'jam ready'
