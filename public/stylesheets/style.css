@@ -16,6 +16,7 @@ a {
 
 img {
 	width: 100%;
+	padding: 1px;
 }
 
 owl-carousel div {
@@ -29,12 +30,3 @@ owl-carousel div {
 	display:none;
 }
 
-.note1 {
--webkit-filter: sepia(90%) hue-rotate(90deg);
-}
-.note2 {
--webkit-filter: sepia(90%) hue-rotate(0deg);
-}
-.note3 {
--webkit-filter: sepia(90%) hue-rotate(270deg);
-}
