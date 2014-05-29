@@ -49,17 +49,17 @@ sineStart = ->
 sineStop = ->
   socket.emit('audio', { instrument: 'sine', command: 'stop' })
 
-guitar = (note)->
-  socket.emit('audio', { instrument: 'guitar', note:n })
+guitar = (note) ->
+  socket.emit('audio', { instrument: 'guitar', note: note })
 
-percussion = (note)->
-  socket.emit('audio', { instrument: 'percussion', note:n })
+percussion = (note) ->
+  socket.emit('audio', { instrument: 'percussion', note: note })
 
-bassLoop = (note)->
-  socket.emit('audio', { instrument: 'bass-loop', note:n })
+bassLoop = (note) ->
+  socket.emit('audio', { instrument: 'bass-loop', note: note })
 
-drumLoop = (note)->
-  socket.emit('audio', { instrument: 'drum-loop', note:n })
+drumLoop = (note) ->
+  socket.emit('audio', { instrument: 'drum-loop', note: note})
 
 socket.on 'debug', (data) ->
   console.log("Received:", data)
