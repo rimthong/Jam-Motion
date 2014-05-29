@@ -65,7 +65,8 @@ drumLoop.a = new Player './instruments/indie/LOOP_DRUM_1.mp3'
 drumLoop.b = new Player './instruments/indie/LOOP_DRUM_2.mp3'
 
 #Loop events
-globalLoop = {}
+isPlaying = ->
+  bassLoop.isRepeating or drumLoop.isRepeating
 
 tick = ->
   setTimeout ->
@@ -155,24 +156,28 @@ io.sockets.on 'connection', (socket) ->
         percussion[message.note].play()
 
       when 'bass-loop'
-        unless globalLoop.isPlaying
-          globalLoop.isPlaying = true
-          bassLoop.isRepeating = true
-          bassLoop.note = message.note
-          bassLoop[message.note].play()
+        if message.command is 'stop'
+          bassLoop.isRepeating = false
         else
-          bassLoop.note = message.note
-          bassLoop.isRepeating = true
+          unless isPlaying()
+            bassLoop.isRepeating = true
+            bassLoop.note = message.note
+            bassLoop[message.note].play()
+          else
+            bassLoop.note = message.note
+            bassLoop.isRepeating = true
 
       when 'drum-loop'
-        unless globalLoop.isPlaying
-          globalLoop.isPlaying = true
-          drumLoop.isRepeating = true
-          drumLoop.note = message.note
-          drumLoop[message.note].play()
+        if message.command is 'stop'
+          drumLoop.isRepeating = false
         else
-          drumLoop.note = message.note
-          drumLoop.isRepeating = true
+          unless isPlaying()
+            drumLoop.isRepeating = true
+            drumLoop.note = message.note
+            drumLoop[message.note].play()
+          else
+            drumLoop.note = message.note
+            drumLoop.isRepeating = true
 
 #Actually start the server
 server.listen app.get('port'), ->
