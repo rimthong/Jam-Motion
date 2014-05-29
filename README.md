@@ -5,14 +5,21 @@ Fun little hackathon project to play around and jam with your friends, using you
 
 ##Installing
 
-Check out from github then
+Check out from github then:
 
     npm install
+    grunt
+
+You might need to install grunt and grunt-cli globally
+
+    npm install -g grunt
+    npm install -g grunt-cli
 
 ##Starting the server
 
-You need to have node installed, but then it's just
+You need to have node installed, then you just:
 
+    cd server/
     node app.js
 
 
