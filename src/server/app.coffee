@@ -48,6 +48,20 @@ fx1 = new Player './instruments/FX/FX_1.mp3'
 fx2 = new Player './instruments/FX/FX_2.mp3'
 fx3 = new Player './instruments/FX/FX_3.mp3'
 cymbal = new Player './instruments/CYMBAL.mp3'
+guitar = {}
+guitar.a = new Player './instruments/indie/HIT_GUITAR_1.mp3'
+guitar.b = new Player './instruments/indie/HIT_GUITAR_2.mp3'
+guitar.c = new Player './instruments/indie/HIT_GUITAR_3.mp3'
+percussion = {}
+percussion.a = new Player './instruments/indie/HIT_PERC_1.mp3'
+percussion.b = new Player './instruments/indie/HIT_PERC_2.mp3'
+percussion.c = new Player './instruments/indie/HIT_PERC_3.mp3'
+bassLoop = {}
+bassLoop.a = new Player './instruments/indie/LOOP_BASS_1.mp3'
+bassLoop.b = new Player './instruments/indie/LOOP_BASS_2.mp3'
+drumLoop = {}
+drumLoop.a = new Player './instruments/indie/LOOP_DRUM_1.mp3'
+drumLoop.b = new Player './instruments/indie/LOOP_DRUM_2.mp3'
 
 #socketIO
 io.sockets.on 'connection', (socket) ->
@@ -97,6 +111,18 @@ io.sockets.on 'connection', (socket) ->
           when 'c', 'C' then juno_c.play()
           when 'e', 'E' then juno_e.play()
           else juno_g.play()
+
+      when 'guitar'
+        guitar[message.note].play()
+
+      when 'percussion'
+        percussion[message.note].play()
+
+      when 'bass-loop'
+        bassLoop[message.note].play()
+
+      when 'drum-loop'
+        drumLoop[message.note].play()
 
 #Actually start the server
 server.listen app.get('port'), ->

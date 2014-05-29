@@ -25,13 +25,13 @@ hbase = ->
 hhat = ->
   socket.emit('audio', { instrument: 'hhat' })
 
-bass = ->
+bass = (n) ->
   socket.emit('audio', { instrument: 'bass', note:n })
 
-fx = ->
+fx = (n) ->
   socket.emit('audio', { instrument: 'fx', note:n })
 
-juno = ->
+juno = (note) ->
   socket.emit('audio', { instrument: 'juno', note:note })
 
 cymbal = ->
@@ -49,5 +49,17 @@ sineStart = ->
 sineStop = ->
   socket.emit('audio', { instrument: 'sine', command: 'stop' })
 
+guitar = (note)->
+  socket.emit('audio', { instrument: 'guitar', note:n })
+
+percussion = (note)->
+  socket.emit('audio', { instrument: 'percussion', note:n })
+
+bassLoop = (note)->
+  socket.emit('audio', { instrument: 'bass-loop', note:n })
+
+drumLoop = (note)->
+  socket.emit('audio', { instrument: 'drum-loop', note:n })
+
 socket.on 'debug', (data) ->
-    console.log("Received:", data)
+  console.log("Received:", data)

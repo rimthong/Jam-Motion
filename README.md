@@ -63,11 +63,15 @@ Meta messages are not yet defined, but will be used for the following use cases:
  * 'bass' notes 1,2,3
  * 'fx' notes 1,2,3
  * 'juno' notes 'c', 'e', 'g'
+ * 'guitar' notes 'a', 'b', 'c'
+ * 'percussion' notes 'a', 'b', 'c'
 
 ####Loop Instrument
 
  * 'loop1'
  * 'loop2'
+ * 'bass-loop' notes a, b
+ * 'drum-loop' notes a, b
 
 ##Roadmap
 
