@@ -8,10 +8,11 @@
   "dependencies": {
     "express": "3.4.0",
     "jade": "*",
-    "socket.io": "0.9.17",
+    "socket.io": "1.0.2",
     "player": "0.1.8",
     "macaudio": "0.0.2",
-    "baudio": "^2.1.0"
+    "baudio": "^2.1.0",
+    "debounce": "0.0.3"
   },
   "devDependencies": {
     "grunt": "^0.4.5",

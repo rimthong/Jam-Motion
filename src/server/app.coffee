@@ -5,6 +5,7 @@ test = require './routes/test'
 http = require 'http'
 path = require 'path'
 Player = require 'player'
+debounce = require 'debounce'
 
 #setup express server
 app = express()
@@ -21,7 +22,7 @@ app.use(express.bodyParser())
 app.use(express.methodOverride())
 app.use(app.router)
 app.use(express.static(path.join(__dirname, 'public')))
-if 'development' == app.get('env')
+if 'development' is app.get('env')
   app.use(express.errorHandler())
 
 #routes
@@ -62,6 +63,41 @@ bassLoop.b = new Player './instruments/indie/LOOP_BASS_2.mp3'
 drumLoop = {}
 drumLoop.a = new Player './instruments/indie/LOOP_DRUM_1.mp3'
 drumLoop.b = new Player './instruments/indie/LOOP_DRUM_2.mp3'
+
+#Loop events
+globalLoop = {}
+
+tick = ->
+  setTimeout ->
+    if bassLoop.isRepeating then bassLoop[bassLoop.note].play()
+    if drumLoop.isRepeating then drumLoop[drumLoop.note].play()
+  , 0
+
+loopTick = debounce(tick, 700)
+
+drumLoop.a.on 'playend', ->
+  loopTick()
+
+drumLoop.a.on 'error', (err) ->
+  console.log "Drum A error:", err
+
+drumLoop.b.on 'playend', ->
+  loopTick()
+
+drumLoop.b.on 'error', (err) ->
+  console.log "Drum B error:", err
+
+bassLoop.a.on 'playend', ->
+  loopTick()
+
+bassLoop.a.on 'error', (err) ->
+  console.log "Bass A error:", err
+
+bassLoop.b.on 'playend', ->
+  loopTick()
+
+bassLoop.b.on 'error', (err) ->
+  console.log "Bass B error:", err
 
 #socketIO
 io.sockets.on 'connection', (socket) ->
@@ -119,10 +155,24 @@ io.sockets.on 'connection', (socket) ->
         percussion[message.note].play()
 
       when 'bass-loop'
-        bassLoop[message.note].play()
+        unless globalLoop.isPlaying
+          globalLoop.isPlaying = true
+          bassLoop.isRepeating = true
+          bassLoop.note = message.note
+          bassLoop[message.note].play()
+        else
+          bassLoop.note = message.note
+          bassLoop.isRepeating = true
 
       when 'drum-loop'
-        drumLoop[message.note].play()
+        unless globalLoop.isPlaying
+          globalLoop.isPlaying = true
+          drumLoop.isRepeating = true
+          drumLoop.note = message.note
+          drumLoop[message.note].play()
+        else
+          drumLoop.note = message.note
+          drumLoop.isRepeating = true
 
 #Actually start the server
 server.listen app.get('port'), ->
