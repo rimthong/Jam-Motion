@@ -64,11 +64,11 @@ $(function() {
       var absol = Math.sqrt(x*x + y*y + z*z);
       
       if (absol > 10) {
-      	/*if (x>0) {
+      	if (x>0) {
       		subinstrument = "kick";
       	} else {
       		subinstrument = "snare";
-      	}*/
+      	}
         moveThrottled();
       }
     }
@@ -91,9 +91,9 @@ function jam() {
     
     if (instrument) {
     	var myinstr = instrument;
-    	if (instrument == "percussion") {
+    	/*if (instrument == "percussion") {
     		myinstr = subinstrument;
-    	}
+    	}*/
       socket.emit('audio', { "instrument" : myinstr, "note" : note, "id" : myGUID });
       //console.log("sent audio")
     }
