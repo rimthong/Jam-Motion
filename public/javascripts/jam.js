@@ -64,11 +64,11 @@ $(function() {
       var absol = Math.sqrt(x*x + y*y + z*z);
       
       if (absol > 10) {
-      	if (x>0) {
+      	/*if (x>0) {
       		subinstrument = "kick";
       	} else {
       		subinstrument = "snare";
-      	}
+      	}*/
         moveThrottled();
       }
     }
