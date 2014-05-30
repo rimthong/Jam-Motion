@@ -58,6 +58,9 @@ percussion = (note) ->
 bassLoop = (note) ->
   socket.emit('audio', { instrument: 'bass-loop', note: note })
 
+consoleBass = ->
+  socket.emit('audio', { instrument: 'console-bass'})
+
 drumLoop = (note) ->
   socket.emit('audio', { instrument: 'drum-loop', note: note})
 

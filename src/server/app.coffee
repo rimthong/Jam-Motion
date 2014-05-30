@@ -6,6 +6,7 @@ http = require 'http'
 path = require 'path'
 Player = require 'player'
 debounce = require 'debounce'
+exec = require('child_process').exec #Experimental
 
 #setup express server
 app = express()
@@ -167,6 +168,9 @@ io.sockets.on 'connection', (socket) ->
             bassLoop.note = message.note
             bassLoop.isRepeating = true
 
+      when 'console-bass'
+        alwaysPlay()
+
       when 'drum-loop'
         if message.command is 'stop'
           drumLoop.isRepeating = false
@@ -178,6 +182,10 @@ io.sockets.on 'connection', (socket) ->
           else
             drumLoop.note = message.note
             drumLoop.isRepeating = true
+
+alwaysPlay = ->
+  exec 'play ./instruments/indie/LOOP_BASS_1.mp3 repeat 9999', ->
+    console.log 'phew, tired.'
 
 #Actually start the server
 server.listen app.get('port'), ->
