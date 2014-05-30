@@ -65,10 +65,10 @@ drumLoop = (note) ->
   socket.emit('audio', { instrument: 'drum-loop', note: note})
 
 stopBass = ->
-  socket.emit('audio', { instrument: 'bass-loop', command: 'stop'})
+  socket.emit('audio', { instrument: 'bass-loop', note: 'stop'})
 
 stopDrum = ->
-  socket.emit('audio', { instrument: 'drum-loop', command: 'stop'})
+  socket.emit('audio', { instrument: 'drum-loop', note: 'stop'})
 
 socket.on 'debug', (data) ->
   console.log("Received:", data)

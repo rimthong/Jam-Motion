@@ -157,7 +157,7 @@ io.sockets.on 'connection', (socket) ->
         percussion[message.note].play()
 
       when 'bass-loop'
-        if message.command is 'stop'
+        if message.note is 'stop'
           bassLoop.isRepeating = false
         else
           unless isPlaying()
@@ -172,7 +172,7 @@ io.sockets.on 'connection', (socket) ->
         alwaysPlay()
 
       when 'drum-loop'
-        if message.command is 'stop'
+        if message.note is 'stop'
           drumLoop.isRepeating = false
         else
           unless isPlaying()
