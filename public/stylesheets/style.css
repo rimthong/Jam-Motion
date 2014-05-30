@@ -30,3 +30,9 @@ owl-carousel div {
 	display:none;
 }
 
+.noteStop {
+ -webkit-filter: grayscale(100%);
+ filter: grayscale(100%);
+
+}
+
