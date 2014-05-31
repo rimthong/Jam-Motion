@@ -1,4 +1,4 @@
-#Jam Motion
+#Jam-Motion
 
 Fun little hackathon project to play around and jam with your friends, using your phones and gestures!
 
