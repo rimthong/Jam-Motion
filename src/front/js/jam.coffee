@@ -64,7 +64,4 @@ $ ->
       $("#msg").fadeIn(100).fadeOut(200)
 
       if instrument
-        myinstr = instrument
-        if instrument is "percussion"
-          myinstr = subinstrument
-        socket.emit('audio', { "instrument" : myinstr, "note" : note, "id" : myGUID })
+        socket.emit('audio', { "instrument" : instrument, "note" : note, "id" : myGUID })
