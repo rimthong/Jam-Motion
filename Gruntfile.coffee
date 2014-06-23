@@ -9,7 +9,7 @@ module.exports = (grunt) ->
         files:
           'server/app.js': 'src/server/app.coffee'
           'server/routes/index.js' : 'src/server/routes/index.coffee'
-          'server/routes/test.js' : 'src/server/routes/test.coffee'
+          'server/routes/pages.js' : 'src/server/routes/pages.coffee'
           'server/public/javascripts/socket.js': [
             'src/front/js/socket.coffee'
           ]

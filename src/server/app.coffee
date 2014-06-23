@@ -1,7 +1,7 @@
 #Dependencies
 express = require 'express'
 routes = require './routes'
-test = require './routes/test'
+pages = require './routes/pages'
 http = require 'http'
 path = require 'path'
 Player = require 'player'
@@ -28,7 +28,8 @@ if 'development' is app.get('env')
 
 #routes
 app.get('/', routes.index)
-app.get('/test', test.test)
+app.get('/test', pages.test)
+app.get('/view', pages.visualize)
 
 #Instrument sampling
 duophonic = new Player './instruments/synth01_duophonic.mp3'
