@@ -16,7 +16,8 @@
   "dependencies": {
     "jquery": "~2.1.1",
     "underscore": "~1.6.0",
-    "bootstrap": "~3.1.1"
+    "bootstrap": "~3.1.1",
+    "backbone": "~1.1.2"
   },
   "devDependencies": {
     "font-awesome": "~4.1.0"

@@ -10,6 +10,7 @@ module.exports = (grunt) ->
           'server/app.js': 'src/server/app.coffee'
           'server/routes/index.js' : 'src/server/routes/index.coffee'
           'server/routes/pages.js' : 'src/server/routes/pages.coffee'
+          'server/public/javascripts/visualize.js' : 'src/front/js/visualize.coffee'
           'server/public/javascripts/socket.js': [
             'src/front/js/socket.coffee'
           ]
@@ -54,12 +55,15 @@ module.exports = (grunt) ->
       js:
         src: ['vendor/jquery.js',
               'vendor/bootstrap.min.js',
-              'vendor/owl.carousel.min.js',
-              'vendor/underscore-min.js']
+              'vendor/underscore-min.js',
+              'vendor/backbone.js',
+              'vendor/haml.js',
+              'vendor/owl.carousel.min.js']
         dest: 'server/public/javascripts/vendor.js'
       css:
         src: ['vendor/bootstrap.min.css'
               'vendor/owl.carousel.css',
+              'vendor/font-awesome.css',
               'vendor/owl.theme.css.css']
         dest: 'server/public/stylesheets/vendor.css'
 
@@ -75,6 +79,8 @@ module.exports = (grunt) ->
         files: [ expand:true, flatten: true, filter:'isFile', src: ['public/images/**'], dest: 'server/public/images']
       instruments:
         files: [ expand:true, flatten: false, filter:'isFile', src: ['instruments/**'], dest: 'server']
+      fonts:
+        files: [ expand:true, flatten: false, filter:'isFile', src: ['public/fonts/**'], dest: 'server']
       owlimages:
         files: [ expand:true, flatten: true, filter:'isFile', src: ['public/stylesheets/owl-carousel/*.png'], dest: 'server/public/stylesheets/']
 
