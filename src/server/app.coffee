@@ -105,6 +105,13 @@ bassLoop.b.on 'error', (err) ->
 #socketIO
 io.sockets.on 'connection', (socket) ->
 
+  #playing with instrument states
+  guitar.a.on 'playing', ->
+    socket.emit 'play', {player: guitar.player, instrument: 'guitar', note: 'a'}
+
+  guitar.a.on 'playend', ->
+    socket.emit 'stop', {player: guitar.player, instrument: 'guitar', note: 'a'}
+
   #Process audio request
   socket.on 'audio', (message) ->
 
@@ -152,6 +159,7 @@ io.sockets.on 'connection', (socket) ->
           else juno_g.play()
 
       when 'guitar'
+        guitar.player = message.player
         guitar[message.note].play()
 
       when 'percussion'

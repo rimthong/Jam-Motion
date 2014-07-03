@@ -83,6 +83,8 @@ module.exports = (grunt) ->
         files: [ expand:true, flatten: false, filter:'isFile', src: ['public/fonts/**'], dest: 'server']
       owlimages:
         files: [ expand:true, flatten: true, filter:'isFile', src: ['public/stylesheets/owl-carousel/*.png'], dest: 'server/public/stylesheets/']
+      sources:
+        files: [ expand:true, flatten: false, filter: 'isFile', src: ['public/src/**'], dest: 'server']
 
     watch:
       coffee:

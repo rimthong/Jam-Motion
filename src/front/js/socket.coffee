@@ -1,74 +1,74 @@
 socket = io.connect('http://localhost')
 socket.emit('audio', { audio: 'beep boop bap' })
 
-kick = ->
-  socket.emit('audio', { instrument: 'kick' })
+kick = (player = 'anon') ->
+  socket.emit('audio', { player: player, instrument: 'kick' })
 
-snare = ->
-  socket.emit('audio', { instrument: 'snare' })
+snare = (player = 'anon') ->
+  socket.emit('audio', { player: player, instrument: 'snare' })
 
-loop1 = ->
-  socket.emit('audio', { instrument: 'loop1', command: 'start' })
+loop1 = (player = 'anon') ->
+  socket.emit('audio', { player: player, instrument: 'loop1', command: 'start' })
 
-loop1stop = ->
-  socket.emit('audio', { instrument: 'loop1', command: 'stop' })
+loop1stop = (player = 'anon') ->
+  socket.emit('audio', { player: player, instrument: 'loop1', command: 'stop' })
 
-loop2 = ->
-  socket.emit('audio', { instrument: 'loop2', command: 'start' })
+loop2 = (player = 'anon') ->
+  socket.emit('audio', { player: player, instrument: 'loop2', command: 'start' })
 
-loop2stop = ->
-  socket.emit('audio', { instrument: 'loop2', command: 'stop' })
+loop2stop = (player = 'anon') ->
+  socket.emit('audio', { player: player, instrument: 'loop2', command: 'stop' })
 
-hbase = ->
-  socket.emit('audio', { instrument: 'hbase' })
+hbase = (player = 'anon') ->
+  socket.emit('audio', { player: player, instrument: 'hbase' })
 
-hhat = ->
-  socket.emit('audio', { instrument: 'hhat' })
+hhat = (player = 'anon') ->
+  socket.emit('audio', { player: player, instrument: 'hhat' })
 
-bass = (n) ->
-  socket.emit('audio', { instrument: 'bass', note:n })
+bass = (n, player = 'anon') ->
+  socket.emit('audio', { player: player, instrument: 'bass', note: n })
 
 fx = (n) ->
-  socket.emit('audio', { instrument: 'fx', note:n })
+  socket.emit('audio', { player: player, instrument: 'fx', note: n })
 
 juno = (note) ->
-  socket.emit('audio', { instrument: 'juno', note:note })
+  socket.emit('audio', { player: player, instrument: 'juno', note: note })
 
-cymbal = ->
-  socket.emit('audio', { instrument: 'cymbal'})
+cymbal = (player = 'anon') ->
+  socket.emit('audio', { player: player, instrument: 'cymbal'})
 
-duophonic = ->
-  socket.emit('audio', { instrument: 'duophonic' })
+duophonic = (player = 'anon') ->
+  socket.emit('audio', { player: player, instrument: 'duophonic' })
 
-duophonic5 = ->
-  socket.emit('audio', { instrument: 'duophonic5' })
+duophonic5 = (player = 'anon') ->
+  socket.emit('audio', { player: player, instrument: 'duophonic5' })
 
-sineStart = ->
-  socket.emit('audio', { instrument: 'sine', command: 'start' })
+sineStart = (player = 'anon') ->
+  socket.emit('audio', { player: player, instrument: 'sine', command: 'start' })
 
-sineStop = ->
-  socket.emit('audio', { instrument: 'sine', command: 'stop' })
+sineStop = (player = 'anon') ->
+  socket.emit('audio', { player: player, instrument: 'sine', command: 'stop' })
 
-guitar = (note) ->
-  socket.emit('audio', { instrument: 'guitar', note: note })
+guitar = (note, player = 'anon') ->
+  socket.emit('audio', { player: player, instrument: 'guitar', note: note })
 
-percussion = (note) ->
-  socket.emit('audio', { instrument: 'percussion', note: note })
+percussion = (note, player = 'anon') ->
+  socket.emit('audio', { player: player, instrument: 'percussion', note: note })
 
-bassLoop = (note) ->
-  socket.emit('audio', { instrument: 'bass-loop', note: note })
+bassLoop = (note, player = 'anon') ->
+  socket.emit('audio', { player: player, instrument: 'bass-loop', note: note })
 
-consoleBass = ->
-  socket.emit('audio', { instrument: 'console-bass'})
+consoleBass = (player = 'anon') ->
+  socket.emit('audio', { player: player, instrument: 'console-bass'})
 
-drumLoop = (note) ->
-  socket.emit('audio', { instrument: 'drum-loop', note: note})
+drumLoop = (note, player = 'anon') ->
+  socket.emit('audio', { player: player, instrument: 'drum-loop', note: note})
 
-stopBass = ->
-  socket.emit('audio', { instrument: 'bass-loop', note: 'stop'})
+stopBass = (player = 'anon') ->
+  socket.emit('audio', { player: player, instrument: 'bass-loop', note: 'stop'})
 
-stopDrum = ->
-  socket.emit('audio', { instrument: 'drum-loop', note: 'stop'})
+stopDrum = (player = 'anon') ->
+  socket.emit('audio', { player: player, instrument: 'drum-loop', note: 'stop'})
 
 socket.on 'debug', (data) ->
   console.log("Received:", data)
